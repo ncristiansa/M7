@@ -1,15 +1,21 @@
 <html>
     <head>
-        <title></title>
+        <title>Pre exam</title>
     </head>
     <body>
         <?php
-           include 'connect.php';
+           $SERVER = "localhost";
+           $USER = "root";
+           $PASS = "funky";
+           $DB = "employees";
+           $CONNECT = mysqli_connect($SERVER, $USER, $PASS, $DB);
         ?>
                 <?php
-                    $listaEmployees = [];
+                    
                     $sqlConsulta_Employees = ("SELECT * FROM employees;");
                     $sqlResultado_Employees = mysqli_query($CONNECT, $sqlConsulta_Employees);
+                    $listaEmployees = [];
+
                     while($sqlDatos_Employees = mysqli_fetch_assoc($sqlResultado_Employees))
                     {
                         $employees_birthdate = $sqlDatos_Employees["birth_date"];
@@ -22,19 +28,11 @@
                         array_push($listaEmployees, $employees_lastname);
                         array_push($listaEmployees, $employees_gender);
                         array_push($listaEmployees, $employees_hiredate);
-
                     }
                     print_r($listaEmployees[0]);
+                    
+                    
                 ?>
-            <h2>Formulario</h2>
-            <form method="post" action="dades.php">
-                <label>Empleado:</label>
-                <?php
-                   
-                ?>
-            </form>
-        <?php
-            
-        ?>
+
     </body>
 </html>
